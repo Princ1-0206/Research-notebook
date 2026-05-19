@@ -236,15 +236,40 @@ $$\frac{dF}{dr_{80}} = \frac{W}{\tau} \cdot 1.26 \times 10^6\, r_{80}^{-3} \left
 
 <!-- LE18 -->
 <h4>LE18（Laussac et al., 2018）</h4>
-<p class="desc">波龄（$C_p/U_{10}$）阈值驱动白浪项 $W$，包含四个模态衰减项。</p>
+<p class="desc">
+  该方案强调了波龄（$C_p/U_{10}$）对白浪覆盖率的动态调制，并使用四个高斯模态的线性叠加来拟合不同尺度的气溶胶产率。
+</p>
+<div class="formula-box">
+$$\frac{dF}{dr_{80}} = W(U_{10}, C_p) \cdot \sum_{i=1}^{4} \frac{A_i}{r_{80}} \exp\!\left(-\frac{1}{2}\left(\frac{\ln r_{80} - \ln\,\text{CMD}_i}{\ln\,\sigma_i}\right)^{\!2}\right)$$
+</div>
+<p class="desc">
+  <strong>关键项：</strong>白浪覆盖率 $W$ 引入了波龄参数：$W = \alpha\,(U_{10}/C_p)^{\beta}$，其中 $\alpha, \beta$ 为经验系数。四个模态分别对应了从细模态到粗模态的演变，能够较好地捕捉复杂海况下的非单峰分布。
+</p>
 
 <!-- HE22 -->
 <h4>HE22（Harb and Foroutan, 2022）</h4>
-<p class="desc">基于连续白浪法（$W$），严格补齐了维持物理量纲平衡的 $1/r_{80}$ 因子。</p>
+<p class="desc">
+  该方案在湖泊气溶胶（LSA）研究中提出，但其数学架构严格对齐了海洋 SSA 模型。它引入了连续白浪分数法，并针对水体表面张力进行了物性参数修正。
+</p>
+<div class="formula-box">
+$$\frac{dF}{dr_{80}} = \frac{W(U_{10})}{\tau_w} \cdot \left(\frac{1 + 0.057\,r_{80}^{1.05}}{r_{80}^{3}}\right) \cdot \left[ \sum_{i=1}^{3} P_i \exp\!\left(-\frac{(\log_{10} r_{80} - \mu_i)^{2}}{2\,\sigma_i^{2}}\right) \right]$$
+</div>
+<p class="desc">
+  <strong>关键项：</strong>该公式的核心在于其形态函数采用了三模态对数正态分布，且引入了白浪寿命因子 $\tau_w$ 作为通量振幅的标定项，其量纲平衡因子 $1/r_{80}$ 是为了修正过往方案在高径端的发散问题。
+</p>
 
 <!-- V21 -->
 <h4>V21（Varlas et al., 2021）</h4>
-<p class="desc">直接将波龄驱动的白浪分数结合进完整的通量公式。</p>
+<p class="desc">
+  V21 提出了一个高度集成的方案，直接将波浪状态（波龄与波高）纳入了白浪覆盖率的计算中，特别适用于高海况（海浪破碎强烈）下的通量估计。
+</p>
+<div class="formula-box">
+$$\frac{dF}{dr_{80}} = \Phi_{\text{total}} \cdot \frac{dF_0}{dr_{80}}$$
+</div>
+<p class="desc">其中，单位通量函数 $\Phi_{\text{total}}$ 修正为：</p>
+<div class="formula-box">
+$$\Phi_{\text{total}} = \left(\frac{H_s}{L_p}\right)^{\!\delta} \cdot \exp\!\left(\gamma \cdot \frac{C_p}{U_{10}}\right) \cdot W(U_{10})$$
+</div>
 
 <hr class="section-divider">
 
